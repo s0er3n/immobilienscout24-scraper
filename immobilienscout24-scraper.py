@@ -15,11 +15,14 @@ headers = {
 "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
 "x-requested-with": "XMLHttpRequest",
 }
+
+
 searchresults = []
 pageexists = True
+i = 1
 while pageexists:
     try:
-        r = requests.post(f"https://www.immobilienscout24.de/Suche/radius/wohnung-mieten?centerofsearchaddress=Berlin;10829;;;;&geocoordinates=52.4856;13.36495;5.0&pagenumber={i}",headers = headers)
+        r = requests.post(f"https://www.immobilienscout24.de/Suche/de/wohnung-mieten?pagenumber={i}",headers = headers)
         rdict = r.json()
         try:
             searchresults.append(rdict["searchResponseModel"]["resultlist.resultlist"]["resultlistEntries"][0]["resultlistEntry"])
@@ -28,6 +31,7 @@ while pageexists:
     except:
         print("end of sites")
         pageexists = False
+    i += 1
 
 with open("immmo.csv", "w", encoding="utf-8") as file:
     writer = csv.writer(file)
