@@ -2,6 +2,7 @@ import requests
 import csv
 import sqlite3
 
+# Importieren von Python Programmier Bibilotheken siehe https://de.wikipedia.org/wiki/Programmbibliothek
 headers = {
     "accept": "application/json; charset=utf-8",
     "accept-encoding": "gzip, deflate, br",
